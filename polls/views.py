@@ -11,9 +11,9 @@ def index(request):
 
 # 捕获单帧
 def capture(request):
-    file_count = len(request.FILES.values())
+    file_count = request.FILES.__len__()
     if file_count == 1:
-        ret_file = list(request.FILES.values()).index(0)
+        ret_file = list(request.FILES.values())[0]
         return HttpResponse(ret_file, content_type='image/jpeg')
     else:
         return HttpResponseBadRequest()
